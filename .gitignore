@@ -1,0 +1,8 @@
+public/bower_components/
+node_modules/
+public/.DS_Store
+npm-debug.log
+.DS_Store
+./archives/.*
+/public/dist/all.min.js
+/public/dist/all.min.css
