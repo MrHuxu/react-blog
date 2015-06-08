@@ -30,6 +30,7 @@ var routes = (
     <Route name="archives" handler={Archives}/>
     <Route name="projects" handler={Projects}/>
     <Route name="aboutme" handler={Aboutme}/>
+    <Route name="article" path="article/:filename" handler={Article}/>
     <NotFoundRoute handler={Index}/>
     <DefaultRoute handler={Index}/>
   </Route>

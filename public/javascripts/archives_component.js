@@ -2,9 +2,9 @@ var ArticleList = React.createClass({
   render: function () {
     var articleLinks = this.props.data.map(function (article) {
       return (
-        <article>
-          <a href='*'>{article}</a><br />
-        </article>
+        <article-title>
+          <Link to="article" params={{filename: article}}>{article}</Link><br />
+        </article-title>
       );
     });
     return (
