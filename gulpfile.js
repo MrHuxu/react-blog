@@ -5,19 +5,15 @@ var gulp = require('gulp'),
     concatCss = require('gulp-concat-css'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
+    react = require('gulp-react'),
     shell = require('gulp-shell');
 
 gulp.task('js', function () {
-  gulp.src([
-      './public/bower_components/highlightjs/highlight.pack.js',
-      './public/bower_components/nprogress/nprogress.js',
-      './public/bower_components/angular/angular.min.js',
-      './public/bower_components/angular-ui-router/release/angular-ui-router.min.js',
-      './public/javascripts/blog_module.js', 
-      './public/javascripts/*.js'
-    ])
+  gulp.src('./public/javascripts/*.js')
+    .pipe(react())
     .pipe(concat('all.min.js'))
     .pipe(gulp.dest('./public/dist'))
+    .pipe(uglify())
     .pipe(gulp.dest('./public/dist'));
 });
 
