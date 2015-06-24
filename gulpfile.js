@@ -18,7 +18,6 @@ gulp.task('js', function () {
     ])
     .pipe(concat('all.min.js'))
     .pipe(gulp.dest('./public/dist'))
-    .pipe(uglify({mangle: false}))
     .pipe(gulp.dest('./public/dist'));
 });
 
