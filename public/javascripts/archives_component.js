@@ -6,14 +6,15 @@ var TagList = React.createClass({
       article.split('*')[3].split('.')[0].split('-').forEach(function (tag) {
         if (tags.indexOf(tag) === -1){
           tags.push(tag);
-          tagBtns.push(<button key={tags.length - 1} onClick={$this.filterArticle.bind(null, tag)}>{tag}</button>);
+          tagBtns.push(<button key={tags.length - 1} className='btn btn-default btn-sm' onClick={$this.filterArticle.bind(null, tag)}>{tag}</button>);
         }
       });
     });
     return (
-      <div className="widget tag-widget">
+      <div className="widget">
+        <h4 className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget-title">Tags</h4>
         {tagBtns}<br />
-        <button onClick={this.cancelFilter}>Cancel</button>
+        <button className='btn btn-default btn-sm' onClick={this.cancelFilter}>Cancel</button>
       </div>
     );
   },
@@ -36,13 +37,13 @@ var ArticleList = React.createClass({
   render: function () {
     var articleLinks = this.props.data.map(function (article) {
       return (
-        <article-title key={article.split('*')[0]}>
+        <div className='widget title-panel' key={article.split('*')[0]}>
           <Link to="article" params={{filename: article}}>{article}</Link><br />
-        </article-title>
+        </div>
       );
     });
     return (
-      <div className="article-links">
+      <div className="col-xs-12 col-sm-6 col-md-4 title-block">
         {articleLinks}
       </div>
     );
@@ -65,8 +66,12 @@ var Archives = React.createClass({
     return (
       <div>
         <h1>Archives</h1>
-        <TagList data={this.state.articles} parent={this}/>
-        <ArticleList data={this.state.filteredArticles}/>
+        <div className='col-md-3'>
+          <TagList data={this.state.articles} parent={this}/>
+        </div>
+        <div className='col-md-9'>
+          <ArticleList data={this.state.filteredArticles}/>
+        </div>
       </div>
     );
   }

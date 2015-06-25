@@ -27,7 +27,11 @@ var Snippets = React.createClass({
       async: false
     }).responseText;
     var snippetContents = JSON.parse(responseContent).articles.map(function (article) {
-      return (<span key={article.filename.split('*')[0]} dangerouslySetInnerHTML={{__html: article.content}}/>);
+      return (
+        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget index-content">
+          <span key={article.filename.split('*')[0]} dangerouslySetInnerHTML={{__html: article.content}}/>
+        </div>
+        );
     });
     this.setState({snippets: snippetContents});
   },
@@ -36,9 +40,30 @@ var Snippets = React.createClass({
   },
   render: function () {
     return (
-      <snippets>
-        {this.state.snippets}
-      </snippets>
+      <div>
+        <div className="col-md-4 col-lg-3 sidebar">
+          <h4 className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget-title">Me</h4>
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget description">
+            <p className="index-desc">xhu</p>
+            <p className="index-desc">跳大飞机</p>
+            <p className="index-desc">金牛座程序员</p>
+            <p className="index-desc">唱歌，编程，看书</p>
+            <p className="index-desc">瞪谁谁怀孕</p>
+          </div>
+          <h4 className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget-title">Motto</h4>
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget motto">
+            <p>thought & thinking & doing & done</p>
+          </div>
+          <h4 className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget-title">Latest</h4>
+          <div>
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget latest">
+          </div>
+          </div>
+        </div>
+        <div className="col-xs-12 col-sm-12 col-md-9 col-md-offset-3 col-lg-9 col-lg-offset-3 index-block">
+          {this.state.snippets}
+        </div>
+      </div>
     );
   }
 })
