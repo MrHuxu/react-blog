@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <% if (process.env.NODE_ENV === 'production') { %>
+    <link rel="stylesheet" type="text/css" href="/dist/all.min.css">
+  <% } else { %>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+  <% } %>
   </head>
   <body>
     <div id="content"></div>
   </body>
-  <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+
+<% if (process.env.NODE_ENV === 'production') { %>
+  <script type="text/javascript" src="/dist/all.min.js"></script>
+<% } else { %>
+  <script type="text/javascript" src="/bower_components/jquery/dist/jquery.js"></script>
   <script type="text/javascript" src="/bower_components/react/react.js"></script>
   <script type="text/javascript" src="/bower_components/react/JSXTransformer.js"></script>
   <script type="text/javascript" src="/bower_components/react-router/build/umd/ReactRouter.js"></script>
@@ -17,4 +25,5 @@
   <script type="text/jsx" src="/javascripts/projects_component.js"></script>
   <script type="text/jsx" src="/javascripts/aboutme_component.js"></script>
   <script type="text/jsx" src="/javascripts/blog_routes.js"></script>
+<% } %>
 </html>

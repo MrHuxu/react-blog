@@ -9,7 +9,15 @@ var gulp = require('gulp'),
     shell = require('gulp-shell');
 
 gulp.task('js', function () {
-  gulp.src('./public/javascripts/*.js')
+  gulp.src([
+      './public/bower_components/jquery/dist/jquery.min.js',
+      './public/bower_components/react/react.min.js',
+      './public/bower_components/react/JSXTransformer.js',
+      './public/bower_components/react-router/build/umd/ReactRouter.min.js',
+      './public/bower_components/marked/marked.min.js',
+      './public/javascripts/*component.js',
+      './public/javascripts/blog_routes.js'
+    ])
     .pipe(react())
     .pipe(concat('all.min.js'))
     .pipe(gulp.dest('./public/dist'))
