@@ -11,6 +11,7 @@ var gulp = require('gulp'),
 gulp.task('js', function () {
   gulp.src([
       './public/bower_components/jquery/dist/jquery.min.js',
+      './public/bower_components/bootstrap/dist/js/bootstrap.min.js',
       './public/bower_components/react/react.min.js',
       './public/bower_components/react/JSXTransformer.js',
       './public/bower_components/react-router/build/umd/ReactRouter.min.js',
