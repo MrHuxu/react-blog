@@ -26,7 +26,7 @@ I will try my best to finishi this task.
 - [x] Make the titles hyper-link and lead to content page
 - [x] Display the content in Markdown
 - [x] Use tags to filter articles
-- [ ] Pagination on Home page
+- [x] Pagination on Home page
 - [ ] Comment system by using Disqus
 - [ ] Animations and Stylesheets(easily import from [ng-blog](https://github.com/MrHuxu/ng_blog))
 - [ ] Maybe some optimize
