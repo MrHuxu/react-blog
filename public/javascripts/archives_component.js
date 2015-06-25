@@ -6,7 +6,7 @@ var TagList = React.createClass({
       article.split('*')[3].split('.')[0].split('-').forEach(function (tag) {
         if (tags.indexOf(tag) === -1){
           tags.push(tag);
-          tagBtns.push(<button onClick={$this.filterArticle.bind(this, tag)}>{tag}</button>);
+          tagBtns.push(<button key={tags.length - 1} onClick={$this.filterArticle.bind(null, tag)}>{tag}</button>);
         }
       });
     });
@@ -36,7 +36,7 @@ var ArticleList = React.createClass({
   render: function () {
     var articleLinks = this.props.data.map(function (article) {
       return (
-        <article-title>
+        <article-title key={article.split('*')[0]}>
           <Link to="article" params={{filename: article}}>{article}</Link><br />
         </article-title>
       );
@@ -58,6 +58,9 @@ var Archives = React.createClass({
       this.setState({articles: data.articles, filteredArticles: data.articles});
     }.bind(this));
   },
+  componentDidMount: function () {
+    this.loadArticles();
+  },
   render: function () {
     return (
       <div>
@@ -66,8 +69,5 @@ var Archives = React.createClass({
         <ArticleList data={this.state.filteredArticles}/>
       </div>
     );
-  },
-  componentDidMount: function () {
-    this.loadArticles();
   }
 });
