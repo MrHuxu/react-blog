@@ -8,15 +8,15 @@ I will try my best to finishi this task.
 
 - For development:
 
-    $ cd project_dir/
-    $ npm install
-    $ gulp dev
+        $ cd project_dir/
+        $ npm install
+        $ gulp dev
 
   The app will running on localhost at 8080 port.
 
 - For production:
 
-    $ gulp prd
+        $ gulp prd
 
   The app will compress all css and js files, and still running on 8080 port.
 
@@ -26,8 +26,8 @@ I will try my best to finishi this task.
 - [x] Make the titles hyper-link and lead to content page
 - [x] Display the content in Markdown
 - [x] Use tags to filter articles
-- [] Pagination on Home page
-- [] Comment system by using Disqus
-- [] Animations and Stylesheets(easily import from [ng-blog](https://github.com/MrHuxu/ng_blog))
-- [] Maybe some optimize
-- [] Projects and Aboutme page redesign
+- [ ] Pagination on Home page
+- [ ] Comment system by using Disqus
+- [ ] Animations and Stylesheets(easily import from [ng-blog](https://github.com/MrHuxu/ng_blog))
+- [ ] Maybe some optimize
+- [ ] Projects and Aboutme page redesign
