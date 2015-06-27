@@ -125,7 +125,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
   }
 
   .content {
-    top: 250px;
+    margin-top: 250px;
   }
 }
 
@@ -144,7 +144,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
   }
 
   .content {
-    top: 40px;
+    margin-top: 40px;
   }
 
   #dropdown-btn {
@@ -168,7 +168,6 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 }
 
 .content {
-  position: absolute;
   width: 100%;
 }
 

@@ -3,11 +3,11 @@ var Pagination = React.createClass({
     var pageNum = Math.ceil(this.props.data.length / 5);
     var pageBtns = [];
     for (var i = 0; i < pageNum; i++)
-      pageBtns.push(<button onClick={this.changePage.bind(null, i)} key={i}>{i}</button>);
+      pageBtns.push(<button className='btn btn-default page-btn' onClick={this.changePage.bind(null, i)} key={i}>{i}</button>);
     return (
-      <pagination>
+      <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 widget pagination'>
         {pageBtns}
-      </pagination>
+      </div>
     )
   },
   changePage: function (page) {
@@ -41,28 +41,7 @@ var Snippets = React.createClass({
   render: function () {
     return (
       <div>
-        <div className="col-md-4 col-lg-3 sidebar">
-          <h4 className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget-title">Me</h4>
-          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget description">
-            <p className="index-desc">xhu</p>
-            <p className="index-desc">跳大飞机</p>
-            <p className="index-desc">金牛座程序员</p>
-            <p className="index-desc">唱歌，编程，看书</p>
-            <p className="index-desc">瞪谁谁怀孕</p>
-          </div>
-          <h4 className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget-title">Motto</h4>
-          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget motto">
-            <p>thought & thinking & doing & done</p>
-          </div>
-          <h4 className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget-title">Latest</h4>
-          <div>
-          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget latest">
-          </div>
-          </div>
-        </div>
-        <div className="col-xs-12 col-sm-12 col-md-9 col-md-offset-3 col-lg-9 col-lg-offset-3 index-block">
-          {this.state.snippets}
-        </div>
+        {this.state.snippets}
       </div>
     );
   }
@@ -83,9 +62,29 @@ var Index = React.createClass({
   render: function () {
     return (
       <div>
-        <h1>Index</h1>
-        <Pagination data={this.state.articles} parent={this}/>
-        <Snippets page={this.state.page}/>
+        <div className="col-md-4 col-lg-3 sidebar">
+          <h4 className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget-title">Me</h4>
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget description">
+            <p className="index-desc">xhu</p>
+            <p className="index-desc">跳大飞机</p>
+            <p className="index-desc">金牛座程序员</p>
+            <p className="index-desc">唱歌，编程，看书</p>
+            <p className="index-desc">瞪谁谁怀孕</p>
+          </div>
+          <h4 className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget-title">Motto</h4>
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget motto">
+            <p>thought & thinking & doing & done</p>
+          </div>
+          <h4 className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget-title">Latest</h4>
+          <div>
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget latest">
+          </div>
+          </div>
+        </div>
+        <div className='col-xs-12 col-sm-12 col-md-9 col-md-offset-3 col-lg-6 col-lg-offset-4 index-block'>
+          <Pagination data={this.state.articles} parent={this}/>
+          <Snippets page={this.state.page}/>
+        </div>
       </div>
     );
   }

@@ -65,7 +65,6 @@ var Archives = React.createClass({
   render: function () {
     return (
       <div>
-        <h1>Archives</h1>
         <div className='col-md-3'>
           <TagList data={this.state.articles} parent={this}/>
         </div>

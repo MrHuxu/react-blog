@@ -10,15 +10,18 @@ var Blog = React.createClass({
   render: function () {
     return (
       <div>
-        <header>
-          <ul>
-            <li><Link to="index">Home</Link></li>
-            <li><Link to="archives">Archives</Link></li>
-            <li><Link to="projects">Projects</Link></li>
-            <li><Link to="aboutme">Aboutme</Link></li>
-          </ul>
-        </header>
-        <RouteHandler/>
+        <div className='header'>
+          <h1>Life of xhu</h1>
+          <div className='links'>
+            <div className='link1'><Link to="index">Home</Link></div>
+            <div className='link2'><Link to="archives">Archives</Link></div>
+            <div className='link3'><Link to="projects">Projects</Link></div>
+            <div className='link4'><Link to="aboutme">Aboutme</Link></div>
+          </div>
+        </div>
+        <div className='col-lg-6 content'>
+          <RouteHandler/>
+        </div>
       </div>
     );
   }
@@ -38,5 +41,5 @@ var routes = (
 
 Router.run(routes, function (Handler) {
 //Router.run(routes, Router.HistoryLocation, function (Handler) {
-  React.render(<Handler />, document.getElementById('content'));
+  React.render(<Handler />, document.getElementById('blog'));
 });
