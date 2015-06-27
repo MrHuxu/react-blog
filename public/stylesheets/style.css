@@ -217,7 +217,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 }
 
 .tag-btn button {
-  margin: 5px 0 5px 0;
+  margin: 5px 5px 5px 0;
 }
 
 ol li, div p, ul li {

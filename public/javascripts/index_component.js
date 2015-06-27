@@ -81,7 +81,7 @@ var Index = React.createClass({
           </div>
           </div>
         </div>
-        <div className='col-xs-12 col-sm-12 col-md-9 col-md-offset-3 col-lg-6 col-lg-offset-4 index-block'>
+        <div className='col-xs-12 col-sm-12 col-md-9 col-md-offset-3 col-lg-6 col-lg-offset-2 index-block'>
           <Pagination data={this.state.articles} parent={this}/>
           <Snippets page={this.state.page}/>
         </div>

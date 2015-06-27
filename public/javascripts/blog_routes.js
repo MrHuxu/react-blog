@@ -19,7 +19,7 @@ var Blog = React.createClass({
             <div className='link4'><Link to="aboutme">Aboutme</Link></div>
           </div>
         </div>
-        <div className='col-lg-6 content'>
+        <div className='col-lg-6 col-lg-offset-2 content'>
           <RouteHandler/>
         </div>
       </div>
