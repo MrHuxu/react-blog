@@ -1,12 +1,13 @@
 var TagList = React.createClass({
   render: function () {
-    var tags = [], tagBtns = [];
     var $this = this;
+    var tagBtns = [];
+    $this.tags = [];
     this.props.data.forEach(function (article) {
       article.split('*')[3].split('.')[0].split('-').forEach(function (tag) {
-        if (tags.indexOf(tag) === -1){
-          tags.push(tag);
-          tagBtns.push(<div className='tag-btn'><button key={tags.length - 1} className='btn btn-default btn-sm' onClick={$this.filterArticle.bind(null, tag)}>{tag}</button></div>);
+        if ($this.tags.indexOf(tag) === -1){
+          $this.tags.push(tag);
+          tagBtns.push(<div className='tag-btn' key={$this.tags.length - 1}><button className='btn btn-default btn-sm' onClick={$this.filterArticle.bind(null, tag)}>{tag}</button></div>);
         }
       });
     });
@@ -17,21 +18,38 @@ var TagList = React.createClass({
           <div className="tags">
             <div className="widget">
               {tagBtns}
-              <button className='btn btn-default btn-sm' onClick={this.cancelFilter}>Cancel</button>
             </div>
           </div>
         </div>
       </div>
     );
   },
+  changeTagState: function (tag) {
+    var tagElem = document.getElementsByClassName('tag-btn')[this.tags.indexOf(tag)].children[0];
+    this.selectedTags = this.selectedTags || [];
+    if (tagElem.className.indexOf('active') === -1) {
+      tagElem.className = 'btn btn-default btn-sm active';
+      this.selectedTags.push(tag);
+    } else {
+      tagElem.className = 'btn btn-default btn-sm';
+      this.selectedTags.splice(this.selectedTags.indexOf(tag), 1);
+    }
+  },
   filterArticle: function (tag) {
+    this.changeTagState(tag);
     var parent = this.props.parent;
-    var srcArr = parent.state.filteredArticles;
-    var distArr = [];
-    srcArr.forEach(function (article) {
-      if (article.indexOf(tag) !== -1)
-        distArr.push(article);
-    });
+    var srcArr = parent.state.articles;
+    var distArr = [], filtered;
+    for (var i = 0; i < srcArr.length; i++) {
+      filtered = true;
+      for (var j = 0; j < this.selectedTags.length; j++) {
+        if (srcArr[i].indexOf(this.selectedTags[j]) === -1) {
+          filtered = false;
+          break;
+        }
+      }
+      filtered ? distArr.push(srcArr[i]) : null;
+    }
     parent.setState({filteredArticles: distArr});
   },
   cancelFilter: function () {
@@ -41,18 +59,32 @@ var TagList = React.createClass({
 
 var ArticleList = React.createClass({
   render: function () {
-    var articleLinks = this.props.data.map(function (article) {
-      return (
-        <div className='col-xs-12 col-sm-6 col-md-4 title-block'>
-          <div className='widget title-panel' key={article.split('*')[0]}>
-            <Link to="article" params={{filename: article}}>{article.split('*')[1]}</Link><br />
+    var articles = this.props.data;
+    var yearDividedArticles = {};
+    for (var i = 0; i < articles.length; i++) {
+      var year = articles[i].split('*')[2].slice(0, 4);
+      if (yearDividedArticles[year] === undefined)
+        yearDividedArticles[year] = [articles[i]];
+      else
+        yearDividedArticles[year].push(articles[i]);
+    }
+    var years = Object.keys(yearDividedArticles).reverse();
+    var yearDividedEles = [];
+    years.forEach(function (year) {
+      yearDividedEles.push(<h4 className='col-xs-12 col-sm-12 col-md-12 col-lg-12 widget-title'>{year}</h4>);
+      yearDividedArticles[year].forEach(function (article) {
+        yearDividedEles.push(
+          <div className='col-xs-12 col-sm-6 col-md-4 title-block'>
+            <div className='widget title-panel' key={article.split('*')[0]}>
+              <Link to="article" params={{filename: article}}>{article.split('*')[1]}</Link><br />
+            </div>
           </div>
-        </div>
-      );
+        );
+      });
     });
     return (
       <div className='col-md-9 col-lg-6'>
-        {articleLinks}
+        {yearDividedEles}
       </div>
     );
   }
