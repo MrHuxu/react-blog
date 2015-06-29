@@ -1,17 +1,40 @@
 var Pagination = React.createClass({
   render: function () {
-    var pageNum = Math.ceil(this.props.data.length / 5);
-    var pageBtns = [];
-    for (var i = 0; i < pageNum; i++)
-      pageBtns.push(<button className='btn btn-default page-btn' onClick={this.changePage.bind(null, i)} key={i}>{i}</button>);
     return (
       <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 widget pagination'>
-        {pageBtns}
+        {this.generateBtns()}
       </div>
     )
   },
+  generateBtns: function () {
+    var pageNum = Math.ceil(this.props.data.length / 5);
+    var activeBtn = document.getElementsByClassName('btn btn-default page-btn active')[0];
+    var currentPage = activeBtn ? parseInt(activeBtn.innerText) : 0;
+    var pageBtns = [];
+    for (var i = 0; i < pageNum; i++) {
+      if (i === currentPage) {
+        pageBtns.push(<button className='btn btn-default page-btn active' onClick={this.changePage.bind(null, i)} key={i}>{i}</button>);
+      } else if (i === 0 || i === pageNum - 1 || (i >= currentPage - 1 && i <= currentPage + 1)) {
+        pageBtns.push(<button className='btn btn-default page-btn' onClick={this.changePage.bind(null, i)} key={i}>{i}</button>);
+      } else if (i > 0 && i < (currentPage - 1)) {
+        if (pageBtns[pageBtns.length - 1].props.disabled !== 'disabled')
+          pageBtns.push(<button className='btn btn-default page-btn' disabled='disabled'>...</button>);
+      } else if (i > (currentPage + 1) && i < pageNum - 1) {
+        if (pageBtns[pageBtns.length - 1].props.disabled !== 'disabled')
+          pageBtns.push(<button className='btn btn-default page-btn' disabled='disabled'>...</button>);
+      }
+    }
+    return pageBtns;
+  },
   changePage: function (page) {
     this.props.parent.setState({page: page});
+    var pageBtns = document.getElementsByClassName('btn btn-default page-btn');
+    for (var i = 0; i < pageBtns.length; i++) {
+      if (parseInt(pageBtns[i].innerText) === page)
+        pageBtns[i].className = 'btn btn-default page-btn active';
+      else
+        pageBtns[i].className = 'btn btn-default page-btn';
+    }
   }
 });
 
