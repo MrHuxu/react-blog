@@ -1,4 +1,7 @@
 var Pagination = React.createClass({
+  getInitialState: function () {
+    return ({currentPage: 0});
+  },
   render: function () {
     return (
       <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 widget pagination'>
@@ -8,26 +11,29 @@ var Pagination = React.createClass({
   },
   generateBtns: function () {
     var pageNum = Math.ceil(this.props.data.length / 5);
-    var activeBtn = document.getElementsByClassName('btn btn-default page-btn active')[0];
-    var currentPage = activeBtn ? parseInt(activeBtn.innerText) : 0;
     var pageBtns = [];
+    if (this.state.currentPage !== 0)
+      pageBtns.push(<button className='btn btn-default prev-btn' onClick={this.prevPage}>{'<< Prev'}</button>);
     for (var i = 0; i < pageNum; i++) {
-      if (i === currentPage) {
+      if (i === this.state.currentPage) {
         pageBtns.push(<button className='btn btn-default page-btn active' onClick={this.changePage.bind(null, i)} key={i}>{i}</button>);
-      } else if (i === 0 || i === pageNum - 1 || (i >= currentPage - 1 && i <= currentPage + 1)) {
+      } else if (i === 0 || i === pageNum - 1 || (i >= this.state.currentPage - 1 && i <= this.state.currentPage + 1)) {
         pageBtns.push(<button className='btn btn-default page-btn' onClick={this.changePage.bind(null, i)} key={i}>{i}</button>);
-      } else if (i > 0 && i < (currentPage - 1)) {
+      } else if (i > 0 && i < (this.state.currentPage - 1)) {
         if (pageBtns[pageBtns.length - 1].props.disabled !== 'disabled')
           pageBtns.push(<button className='btn btn-default page-btn' disabled='disabled'>...</button>);
-      } else if (i > (currentPage + 1) && i < pageNum - 1) {
+      } else if (i > (this.state.currentPage + 1) && i < pageNum - 1) {
         if (pageBtns[pageBtns.length - 1].props.disabled !== 'disabled')
           pageBtns.push(<button className='btn btn-default page-btn' disabled='disabled'>...</button>);
       }
     }
+    if (this.state.currentPage !== pageNum - 1)
+      pageBtns.push(<button className="btn btn-default next-btn" onClick={this.nextPage}>{'Next >>'}</button>);
     return pageBtns;
   },
   changePage: function (page) {
     this.props.parent.setState({page: page});
+    this.setState({currentPage: page});
     var pageBtns = document.getElementsByClassName('btn btn-default page-btn');
     for (var i = 0; i < pageBtns.length; i++) {
       if (parseInt(pageBtns[i].innerText) === page)
@@ -35,6 +41,12 @@ var Pagination = React.createClass({
       else
         pageBtns[i].className = 'btn btn-default page-btn';
     }
+  },
+  prevPage: function () {
+    this.changePage(this.state.currentPage - 1);
+  },
+  nextPage: function () {
+    this.changePage(this.state.currentPage + 1);
   }
 });
 
