@@ -10,6 +10,11 @@ var Article = React.createClass({
   getInitialState: function () {
     return ({data: ''});
   },
+  componentDidMount: function  () {
+    this.loadArticleContent();
+    var fileName = this.context.router.getCurrentParams().filename;
+    document.title = 'Life of xhu - ' + fileName.split('*')[1];
+  },
   render: function () {
     return (
       <div>
@@ -17,8 +22,5 @@ var Article = React.createClass({
         <span dangerouslySetInnerHTML={{__html: this.state.data}} />
       </div>
     );
-  },
-  componentDidMount: function  () {
-    this.loadArticleContent();
   }
 });

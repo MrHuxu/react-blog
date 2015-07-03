@@ -1,4 +1,7 @@
 var TagList = React.createClass({
+  componentDidMount: function () {
+    document.title = 'Life of xhu - Archives';
+  },
   render: function () {
     var $this = this;
     var tagBtns = [];
@@ -73,9 +76,11 @@ var ArticleList = React.createClass({
     years.forEach(function (year) {
       yearDividedEles.push(<h4 className='col-xs-12 col-sm-12 col-md-12 col-lg-12 widget-title'>{year}</h4>);
       yearDividedArticles[year].forEach(function (article) {
+        var time = parseInt(article.split('*')[2].slice(4, 6)) + '月' + parseInt(article.split('*')[2].slice(6, 8)) + '日';
         yearDividedEles.push(
           <div className='col-xs-12 col-sm-6 col-md-4 title-block'>
             <div className='widget title-panel' key={article.split('*')[0]}>
+              <p>{time}</p>
               <Link to="article" params={{filename: article}}>{article.split('*')[1]}</Link><br />
             </div>
           </div>

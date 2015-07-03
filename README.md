@@ -28,6 +28,6 @@ I will try my best to finishi this task.
 - [x] Use tags to filter articles
 - [x] Pagination on Home page
 - [ ] Comment system by using Disqus
-- [ ] Animations and Stylesheets(easily import from [ng-blog](https://github.com/MrHuxu/ng_blog))
+- [x] Animations and Stylesheets(easily import from [ng-blog](https://github.com/MrHuxu/ng_blog))
 - [ ] Maybe some optimize
 - [ ] Projects and Aboutme page redesign

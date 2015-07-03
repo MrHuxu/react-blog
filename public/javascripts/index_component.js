@@ -93,6 +93,7 @@ var Index = React.createClass({
   },
   componentDidMount: function () {
     this.loadArticles();
+    document.title = 'Life of xhu - Home';
   },
   render: function () {
     return (
