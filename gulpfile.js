@@ -17,7 +17,8 @@ gulp.task('js', function () {
       './public/bower_components/react-router/build/umd/ReactRouter.min.js',
       './public/bower_components/marked/marked.min.js',
       './public/javascripts/*component.js',
-      './public/javascripts/blog_routes.js'
+      './public/javascripts/blog_routes.js',
+      './public/javascripts/common.js'
     ])
     .pipe(react())
     .pipe(concat('all.min.js'))
