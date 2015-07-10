@@ -16,9 +16,10 @@ gulp.task('js', function () {
       './public/bower_components/react/JSXTransformer.js',
       './public/bower_components/react-router/build/umd/ReactRouter.min.js',
       './public/bower_components/marked/marked.min.js',
+      './public/bower_components/highlightjs/highlight.pack.js',
+      './public/javascripts/common.js',
       './public/javascripts/*component.js',
-      './public/javascripts/blog_routes.js',
-      './public/javascripts/common.js'
+      './public/javascripts/blog_routes.js'
     ])
     .pipe(react())
     .pipe(concat('all.min.js'))

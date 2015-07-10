@@ -15,6 +15,9 @@ var Article = React.createClass({
     var fileName = this.context.router.getCurrentParams().filename;
     document.title = 'Life of xhu - ' + fileName.split('*')[1];
   },
+  componentDidUpdate: function () {
+    highlightAndShowLineNum();
+  },
   render: function () {
     return (
       <div>

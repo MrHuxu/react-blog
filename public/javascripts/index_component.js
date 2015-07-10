@@ -95,6 +95,9 @@ var Index = React.createClass({
     this.loadArticles();
     document.title = 'Life of xhu - Home';
   },
+  componentDidUpdate: function () {
+    highlightAndShowLineNum();
+  },
   render: function () {
     return (
       <div>

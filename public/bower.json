@@ -17,6 +17,7 @@
     "react": "~0.13.3",
     "marked": "~0.3.3",
     "jquery": "~2.1.4",
-    "bootstrap": "~3.3.5"
+    "bootstrap": "~3.3.5",
+    "highlightjs": "~8.6.0"
   }
 }

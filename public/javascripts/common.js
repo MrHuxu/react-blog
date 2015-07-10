@@ -1,3 +1,20 @@
+var highlightAndShowLineNum = function () {
+  var codeBlocks = document.getElementsByTagName('pre');
+  for (var i = 0, len = codeBlocks.length; i < len; i++) {
+    var block = codeBlocks[i].children[0];
+    hljs.highlightBlock(block);
+    var lineNum = block.innerHTML.split('\n').length - 1;
+    var lineNumUl = document.createElement('ul');
+    lineNumUl.className = 'numbering';
+    for (var j = 1; j <= lineNum; j++) {
+      var lineNumLi = document.createElement('li');
+      lineNumLi.innerText = j;
+      lineNumUl.appendChild(lineNumLi);
+    }
+    codeBlocks[i].appendChild(lineNumUl);
+  }
+};
+
 /*(function menu () {
   document.getElementById("dropdown-btn").onclick = function() {
     if (this.className.indexOf('active') === -1) {

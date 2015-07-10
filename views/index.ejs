@@ -5,6 +5,7 @@
   <% if (process.env.NODE_ENV === 'production') { %>
     <link rel="stylesheet" type="text/css" href="/dist/all.min.css">
   <% } else { %>
+    <link rel="stylesheet" type="text/css" href="/bower_components/highlightjs/styles/tomorrow-night-eighties.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" type="text/css" href="/stylesheets/animate.css">
   <% } %>
@@ -22,12 +23,13 @@
   <script type="text/javascript" src="/bower_components/react/JSXTransformer.js"></script>
   <script type="text/javascript" src="/bower_components/react-router/build/umd/ReactRouter.js"></script>
   <script type="text/javascript" src="/bower_components/marked/marked.min.js"></script>
+  <script type="text/javascript" src="/bower_components/highlightjs/highlight.pack.js"></script>
+  <script type="text/javascript" src="/javascripts/common.js"></script>
   <script type="text/jsx" src="/javascripts/index_component.js"></script>
   <script type="text/jsx" src="/javascripts/archives_component.js"></script>
   <script type="text/jsx" src="/javascripts/article_component.js"></script>
   <script type="text/jsx" src="/javascripts/projects_component.js"></script>
   <script type="text/jsx" src="/javascripts/aboutme_component.js"></script>
   <script type="text/jsx" src="/javascripts/blog_routes.js"></script>
-  <script type="text/javascript" src="/javascripts/common.js"></script>
 <% } %>
 </html>
