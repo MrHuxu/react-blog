@@ -51,10 +51,14 @@ var Pagination = React.createClass({
 });
 
 var Snippets = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.func.isRequired
+  },
   getInitialState: function () {
     return ({snippets: []});
   },
   loadSnippets: function (page) {
+    var $this = this;
     var responseContent = $.ajax({
       type: 'POST',
       url: '/all_articles/page_articles',
@@ -62,13 +66,27 @@ var Snippets = React.createClass({
       async: false
     }).responseText;
     var snippetContents = JSON.parse(responseContent).articles.map(function (article) {
-      return (
-        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget index-content">
-          <span key={article.filename.split('*')[0]} dangerouslySetInnerHTML={{__html: article.content}}/>
-        </div>
-        );
+      return $this.generateSnippetPanels(article);
     });
     this.setState({snippets: snippetContents});
+  },
+  generateSnippetPanels: function (article) {
+    var dateTime = article.filename.split('*')[2],
+        date     = parseInt(dateTime.slice(4, 6)) + '月' + parseInt(dateTime.slice(6, 8)) + '日',
+        year     = dateTime.slice(0, 4),
+        tags     = article.filename.split('*')[3].split('.')[0],
+        tagArr   = tags.split('-');
+    return (
+      <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget index-content">
+        <div className="index-header">
+          <h4 className="col-xs-12 col-sm-12 col-md-12 col-lg-12 widget-title">{date + ' ' + [year].concat(tagArr).join(' · ')}</h4>
+        </div>
+        <span key={article.filename.split('*')[0]} dangerouslySetInnerHTML={{__html: article.content}}/>
+        <div className='index-footer'>
+          <a className="btn btn-default" href={this.context.router.makeHref('article', {filename: article.filename})}>Continue Reading</a>
+        </div>
+      </div>
+    );
   },
   componentWillReceiveProps: function (nextProps) {
     this.loadSnippets(nextProps.page);

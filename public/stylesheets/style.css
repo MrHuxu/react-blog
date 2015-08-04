@@ -317,12 +317,12 @@ blockquote {
   border-top: 2px solid #ddd;
 }
 
-.index-footer button {
+.index-footer a {
   border: 0;
   color: #9e9c9f;
 }
 
-.index-footer button:hover {
+.index-footer a:hover {
   background-color: #fff;
 }
 
