@@ -20,8 +20,7 @@ var Article = React.createClass({
   },
   render: function () {
     return (
-      <div>
-        <h2>{this.context.router.getCurrentParams().filename}</h2>
+      <div className='col-lg-8'>
         <span dangerouslySetInnerHTML={{__html: this.state.data}} />
       </div>
     );
