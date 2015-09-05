@@ -1,3 +1,4 @@
+var fs = require('fs');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -15,9 +16,21 @@ var server = require('http').Server(app);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+
+// production log
+// output to a file instead of console
+logger.token('reqBody', function (req) {
+  return ' request: ' + JSON.stringify(req.body);
+});
+if (app.get('env') == 'production') {
+  var logFile = fs.createWriteStream('./log/production.log', {flags: 'a'});
+  app.use(logger(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version"  :reqBody :status :res[content-length]', {stream: logFile }));
+} else {
+  app.use(logger(':method :url :reqBody :status :response-time ms - :res[content-length]'));
+}
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -52,14 +65,6 @@ if (app.get('env') === 'development') {
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('index');
-});
-
-// running this app on port 8080
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
-
-server.listen(server_port, server_ip_address, function(){
-  console.log("Listening on " + server_ip_address + ", server_port " + server_port)
 });
 
 module.exports = app;

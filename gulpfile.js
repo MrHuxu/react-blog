@@ -41,11 +41,11 @@ gulp.task('css', function () {
 
 gulp.task('compress', ['js', 'css'], function () {});
 
-gulp.task('prd', ['compress'], shell.task('NODE_ENV=production node app'));
+gulp.task('prd', ['compress'], shell.task('NODE_ENV=production forever start bin/www'));
 
 gulp.task('dev', function () {
   nodemon({
-    script: 'app.js'
+    script: './bin/www'
   }).on('restart', function () {
     console.log('server restarted!');
   });
