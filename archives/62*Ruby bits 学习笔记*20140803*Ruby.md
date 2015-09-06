@@ -34,21 +34,21 @@
        
 6. 在Ruby中，方法中出现的异常可以用```raise```抛出，然后在执行方法时，使用```begin...end```语句，并且使用```rescue```捕获这个异常。
 
-       def exce(num)
-         if num == 1
-           raise Exception.new
-         end
-         p num
-       end
+        def exce(num)
+          if num == 1
+            raise Exception.new
+          end
+          p num
+        end
 
-       begin 
-         exce(1)
-       rescue Exception
-         warn 'Num1 Exception: It works!'
-       end
-       # => Num1 Exception: It works!
-       # => It doesn't print the num
-       
+        begin 
+          exce(1)
+        rescue Exception
+          warn 'Num1 Exception: It works!'
+        end
+        # => Num1 Exception: It works!
+        # => It doesn't print the num
+
 7. ```begin...end```在Ruby里被定义成一个```expression```，而```do...end```被定义成一个```block```，有一定区别。
 
 8. ```private```完全没有权限，```public```拥有完全权限，```protected```方法：```hidden from outside but accessible from other instances of same class```。
@@ -87,7 +87,7 @@
        
        i = Image.new
        i.pclass   # => This is the class
-       
+
 10. 使用```extend```包含一个```module```，可以把```module```中方法当做类方法来使用，```include```是当做实例方法。  
 
         module Modtest
@@ -101,7 +101,7 @@
         end
 
         Clatest.modmethod('Modtest')
-         
+
 11. 在类实例化后再包含```module```：
        
         module Modtest
@@ -142,5 +142,3 @@
          c = Clatest.new
          c.modmethod("Hehe")
          Clatest.pclass
-
-
