@@ -17,15 +17,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 
-// production log
-// output to a file instead of console
+// log settings
+// output to a file instead of console in production mode
 logger.token('reqBody', function (req) {
   return ' request: ' + JSON.stringify(req.body);
 });
 if (app.get('env') == 'production') {
-  fs.exists('log', function (flag) {
-    flag ? null : fs.mkdir('log');
-  });
+  if (!fs.existsSync('log')) fs.mkdirSync('log');
   var logFile = fs.createWriteStream('./log/production.log', {flags: 'a'});
   app.use(logger(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version"  :reqBody :status :res[content-length]', {stream: logFile }));
 } else {
