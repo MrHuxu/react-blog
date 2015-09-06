@@ -6,3 +6,4 @@ npm-debug.log
 ./archives/.*
 /public/dist/all.min.js
 /public/dist/all.min.css
+log/
